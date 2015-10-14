@@ -3,7 +3,7 @@ $(function() {
 	  hosts: 'localhost:9200'
 	});
 
-	var map = L.map('map').setView([-37.6899474, 145.123149867], 10);
+	var map = L.map('map').setView([34.315833, 108.645833], 10);
 	L.tileLayer( 'http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png', {
 	      attribution: '&copy; <a href="http://osm.org/copyright" title="OpenStreetMap" target="_blank">OpenStreetMap</a> contributors | Tiles Courtesy of <a href="http://www.mapquest.com/" title="MapQuest" target="_blank">MapQuest</a> <img src="http://developer.mapquest.com/content/osm/mq_logo.png" width="16" height="16">',
 	      subdomains: ['otile1','otile2','otile3','otile4'],
@@ -11,9 +11,7 @@ $(function() {
 	  }).addTo( map );
 
 	function onEachFeature(feature, layer) {
-		var popupContent = "<p>" +
-				feature.properties.LOCALITY + ":" + 
-				feature.properties.UFI_CR + "</p>";
+		var popupContent = "<p>" + feature.properties.name + "</p>";
 
 		if (feature.properties && feature.properties.popupContent) {
 			popupContent += feature.properties.popupContent;
@@ -26,12 +24,12 @@ $(function() {
 		var query = $('#query').val();
 
 		client.search({
-		  index: 'suburbs',
-		  type: 'suburb',
+		  index: 'xian_points',
+		  type: 'point',
 		  body: {
 		    query: {
 		      match: {
-		        'LOCALITY': $.trim(query.toUpperCase())
+		        'name': $.trim(query)
 		      }
 		    }
 		  }
@@ -43,7 +41,7 @@ $(function() {
 		    hits.forEach(function(hit) {
 		    	var item = $('<li></li>')
 		    	.addClass('information')
-		    	.text(hit._source.properties.LOCALITY + '@' + hit._source.properties.UFI_CR);
+		    	.text(hit._source.properties.name);
 		    	item.appendTo($('#info'));
 
 		    	var geo = hit._source;
