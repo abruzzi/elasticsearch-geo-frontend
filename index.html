@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+<head>
+	<title>Elasticsearch GEO</title>
+	<link rel="stylesheet" href="scripts/lib/leaflet/dist/leaflet.css">
+	<link rel="stylesheet" href="style/app.css">
+</head>
+<body>
+	<div id="container">
+		<div id="controls">
+			<input type="text" id="query" placeholder="type a location" />
+			<input type="button" value="search" id="search"/>	
+		</div>
+		
+		<div>
+			<ul id="info"></ul>
+			<div id="map"></div>
+		</div>	
+	</div>
+	
+	<script src="scripts/lib/jquery/dist/jquery.min.js"></script>
+	<script src="scripts/lib/elasticsearch/elasticsearch.jquery.min.js"></script>
+	<script src="scripts/lib/leaflet/dist/leaflet.js"></script>
+	<script src="scripts/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+{
+  "name": "elastic-search-frontend",
+  "version": "0.0.1",
+  "authors": [
+    "Qiu Juntao <juntao.qiu@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "scripts/lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "elasticsearch": "~8.2.0",
+    "jquery": "~2.1.4",
+    "leaflet": "~0.7.5"
+  }
+}
