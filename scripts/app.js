@@ -28,7 +28,7 @@ $(function() {
 		  type: 'point',
 		  body: {
 		    query: {
-		      match: {
+		      term: {
 		        'name': $.trim(query)
 		      }
 		    }
@@ -38,10 +38,18 @@ $(function() {
 		    console.log(hits);
 
 		    $('#info').empty();
+
+		    // $('#info').on('click', 'li', function() {
+		    // 	var coordinates = $(this).data('coordinates');
+		    // 	console.log(coordinates);
+		    // 	map.panTo(coordinates);
+		    // });
+
 		    hits.forEach(function(hit) {
 		    	var item = $('<li></li>')
 		    	.addClass('information')
-		    	.text(hit._source.properties.name);
+		    	.text(hit._source.properties.name)
+		    	.data('coordinates', hit._source.geometry.coordinates);
 		    	item.appendTo($('#info'));
 
 		    	var geo = hit._source;
